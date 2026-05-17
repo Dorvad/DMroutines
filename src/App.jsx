@@ -172,10 +172,6 @@ function OpeningScreen({ onStart }) {
                 התחילו למלא
                 <IcArrowLeft size={18} className="arr" />
               </button>
-              <button className="btn btn-ghost" onClick={onStart}>
-                <IcEye size={16} />
-                סקירה
-              </button>
             </div>
             <div className="meta-row">
               <div><span className="k">משך מוערך</span><span className="v">10–15 דקות</span></div>
@@ -229,6 +225,9 @@ function ExamplesGrid({ onUse }) {
           <h4>השראה</h4>
           <span className="ex-counter">{String(EXAMPLES.length).padStart(2,"0")} דוגמאות</span>
         </div>
+        <p className="ex-microcopy">
+          אלו תבניות לדוגמה בלבד — לחצו &ldquo;השתמשו בדוגמה&rdquo; כדי למלא שגרה לפי התבנית, ואז ערכו אותה בחופשיות.
+        </p>
       </header>
       <div className="example-track">
         {EXAMPLES.map((ex, i) => (
@@ -811,7 +810,7 @@ export default function App() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) return JSON.parse(saved);
     } catch {}
-    return [{ ...EXAMPLES[0] }, { ...EXAMPLES[1] }, { ...EMPTY }];
+    return [{ ...EMPTY }, { ...EMPTY }, { ...EMPTY }];
   });
 
   // Auto-save whenever routines change
