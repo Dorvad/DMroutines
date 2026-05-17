@@ -188,11 +188,11 @@ function OpeningScreen({ onStart }) {
               </header>
 
               <ol className="ic-list">
-                <li>{INSTRUCTIONS[0]}</li>
-                <li>{INSTRUCTIONS[1]}</li>
+                <li><span>{INSTRUCTIONS[0]}</span></li>
+                <li><span>{INSTRUCTIONS[1]}</span></li>
                 <li><span className="hl">{INSTRUCTIONS[2]}</span></li>
-                <li>בסיום הורידו כקובץ <span className="pdf-pill">PDF</span></li>
-                <li>{INSTRUCTIONS[4]}</li>
+                <li><span>בסיום הורידו כקובץ <span className="pdf-pill">PDF</span></span></li>
+                <li><span>{INSTRUCTIONS[4]}</span></li>
               </ol>
 
               <div className="brand-strip">
