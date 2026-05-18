@@ -32,64 +32,6 @@ const INSTRUCTIONS = [
   "כל קבוצה תציג את התוצר שלה במליאה.",
 ];
 
-// Two examples kept verbatim from brief, plus four additional management-routine
-// examples appropriate for a senior management team.
-const EXAMPLES = [
-  {
-    name: "סנכרון שבועי",
-    forum: "שמות המנהלים הנוכחים האם שחר ויורם נוכחים גם? יש מישהו נוסף רלוונטי?",
-    content: "מעבר על ״בורריות אדומות״ בממשקים ותיאום דחוף.",
-    timing: "ראשון בבוקר, 20 דק׳",
-    prep: "דאשבורד משותף",
-    goal: "מניעת חיכוך בין מחלקות",
-    metric: "",
-  },
-  {
-    name: "פורום ״תמונת ניצחון״",
-    forum: "שמות המנהלים הנוכחים האם שחר ויורם נוכחים גם? יש מישהו נוסף רלוונטי?",
-    content: "שיח אסטרטגי על יעדי הרבעון הבא וחיבור לחזון.",
-    timing: "פעם ברבעון, 3 שעות",
-    prep: "מצגת יעדים",
-    goal: "יישור קו אסטרטגי מלא",
-    metric: "",
-  },
-  {
-    name: "1:1 חודשי",
-    forum: "כל סמנכ״ל עם הכפיפים הישירים שלו",
-    content: "התקדמות אישית, חסמים פתוחים ומשוב הדדי.",
-    timing: "פעם בחודש, 45 דק׳",
-    prep: "מסמך שיתופי מתעדכן",
-    goal: "פיתוח אישי וזיהוי חסמים מוקדם",
-    metric: "",
-  },
-  {
-    name: "סקירת KPIs רבעונית",
-    forum: "כל חברי ההנהלה הבכירה",
-    content: "ניתוח מדדים תפעוליים ופיננסיים מול היעדים שהוגדרו.",
-    timing: "סוף רבעון, שעתיים",
-    prep: "דאשבורד BI",
-    goal: "שקיפות מלאה וזיהוי מגמות",
-    metric: "",
-  },
-  {
-    name: "Stand-up פתיחת שבוע",
-    forum: "סמנכ״לים בלבד",
-    content: "סנכרון יומן השבוע, התראות והחלטות פתוחות.",
-    timing: "ראשון 09:00, 15 דק׳",
-    prep: "ערוץ Slack ייעודי",
-    goal: "יישור ציפיות שבועי",
-    metric: "",
-  },
-  {
-    name: "סבב שטח",
-    forum: "המנכ״ל יחד עם 2 סמנכ״לים מתחלפים",
-    content: "ביקור באולמות תצוגה ובמרכזי שירות לזיהוי פערים בשטח.",
-    timing: "פעם בחודש, חצי יום",
-    prep: "רשימת ביקור מובנית",
-    goal: "חיבור ישיר ללקוח ולמערך השירות",
-    metric: "",
-  },
-];
 
 const PROGRESS_STEPS = [
   { id: "opening", label: "פתיחה" },
@@ -210,48 +152,6 @@ function OpeningScreen({ onStart }) {
 }
 
 /* =========================================================
-   Examples — six inspiration cards
-   ========================================================= */
-
-function ExampleSummary({ ex }) {
-  return ex.content || ex.goal;
-}
-
-function ExamplesGrid({ onUse }) {
-  return (
-    <section className="examples">
-      <header className="examples-head">
-        <div className="ex-title-block">
-          <h4>השראה</h4>
-          <span className="ex-counter">{String(EXAMPLES.length).padStart(2,"0")} דוגמאות</span>
-        </div>
-        <p className="ex-microcopy">
-          אלו תבניות לדוגמה בלבד — לחצו &ldquo;השתמשו בדוגמה&rdquo; כדי למלא שגרה לפי התבנית, ואז ערכו אותה בחופשיות.
-        </p>
-      </header>
-      <div className="example-track">
-        {EXAMPLES.map((ex, i) => (
-          <article className="example-card" key={i}>
-            <div className="ex-num">דוגמה {String(i+1).padStart(2,"0")}</div>
-            <h5 className="ex-title">{ex.name}</h5>
-            <p className="ex-summary"><ExampleSummary ex={ex} /></p>
-            <div className="ex-meta">
-              <span className="chip">{ex.timing}</span>
-              {ex.prep && <span className="chip">{ex.prep}</span>}
-            </div>
-            <div className="ex-actions">
-              <button className="btn btn-soft btn-sm" onClick={() => onUse(ex)}>
-                השתמשו בדוגמה
-              </button>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* =========================================================
    Field
    ========================================================= */
 
@@ -290,9 +190,6 @@ function FillingScreen({ routines, setRoutines, active, setActive, onShowResult 
   const r = routines[active];
   const updateField = (key, val) => {
     setRoutines(rs => rs.map((x, i) => i === active ? { ...x, [key]: val } : x));
-  };
-  const useExample = (ex) => {
-    setRoutines(rs => rs.map((x, i) => i === active ? { ...ex } : x));
   };
 
   const comp = completionOf(r);
@@ -372,8 +269,6 @@ function FillingScreen({ routines, setRoutines, active, setActive, onShowResult 
             </button>
           </div>
         </article>
-
-        <ExamplesGrid onUse={useExample} />
       </div>
     </main>
   );
